@@ -61,9 +61,6 @@ $erichKrausePen->size = 15;
 $erichKrausePen->withButton = false;
 $erichKrausePen->inkColor = 'blue';
 
-
-
-
 class Duck
 {
     public $age;
@@ -93,17 +90,19 @@ $litteDuck->size = 'small';
 $litteDuck->color = 'yellow';
 
 class Product {
-    public function __construct($category, $name, $price, $tax, $discount)
+    public function __construct($category, $name, $price, $validity, $tax, $discount)
     {
         $this -> category = $category;
         $this -> name = $name;
         $this -> price = $price;
+        $this -> validity = $validity;
         $this -> tax = $tax;
         $this -> discount = $discount;
     }
 }
 
-$phpStorm = new Product('programs', 'phpStorm', 199.00, 0, 0);
-$cheesburger = new Product('food', 'Чизбургер Де Люкс', 119, 18, 5);
+$phpStorm = new Product('programs', 'phpStorm', 'thing', 199.00, 0, 0);
+$phpStorm->validity = 1;
+$cheesburger = new Product('food', 'Чизбургер Де Люкс', 'thing', 119, 18, 5);
 $cheesburger->producer = 'KFC';
 $cheesburger->expirationDate = '24.04.2018';
