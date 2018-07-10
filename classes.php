@@ -114,9 +114,9 @@ $litteDuck = new Duck;
 $litteDuck->age = 0.1;
 $litteDuck->size = 'small';
 $litteDuck->color = 'yellow';
-$duck->voice = 'kria';
-$duck->voiceCount = 1;
-voice($duck->voice, $duck->voiceCount);
+$litteDuck->voice = 'kria';
+$litteDuck->voiceCount = 1;
+voice($litteDuck->voice, $litteDuck->voiceCount);
 
 class Product
 {
