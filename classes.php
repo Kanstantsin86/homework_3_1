@@ -1,10 +1,5 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: 1
- * Date: 23.04.2018
- * Time: 18:20
- */
+
 class Car
 {
     public function __construct($model, $yearOfIssue, $enginePower, $engineType, $bodyType, $color)
@@ -16,14 +11,25 @@ class Car
         $this->bodyType = $bodyType;
         $this->color = $color;
     }
+    
+    public function checkTheEnvironmentalFriendliness ($engineType)
+    {
+        if ($engineType === 'electric') {
+            echo 'This car is eco-friendly';
+        } else {
+            echo 'This car is not eco-friendly';
+        }
+    }
 }
 
 $HondaCivic = new Car('Honda Civic Type R', 2017, 6500, 'gas', 'hatchback', 'red');
+checkTheEnvironmentalFriendliness($HondaCivic->engineType);
 $TeslaModelS = new Car('Tesla Model S P100D','2016','568', 'electric ', 'hatchback', 'black');
+checkTheEnvironmentalFriendliness($TeslaModelS->engineType);
 
 class TV
 {
-    public function __construct($model, $yearOfIssue, $screenType, $isDigital, $screenSize, $numberOfColors, $remoteControl, $internetConnection, $smartTv )
+    public function __construct($model, $yearOfIssue, $screenType, $isDigital, $screenSize, $numberOfColors, $numberOfChannels, $remoteControl, $internetConnection, $smartTv)
     {
         $this->model = $model;
         $this->yearOfIssue = $yearOfIssue;
@@ -31,14 +37,22 @@ class TV
         $this->isDigital = $isDigital;
         $this->screenSize = $screenSize;
         $this->numberOfColors = $numberOfColors;
+        $this->numberOfChannels = $numberOfChannels;
         $this->remoteControl = $remoteControl;
         $this->internetConnection = $internetConnection;
         $this->smartTv = $smartTv;
     }
+    
+    public function SelectChannel($numberOfChannels)
+    {
+        echo 'Выберите канал от 1 до ' . $numberOfChannels;
+    }
 }
 
-$beryozka215 = new TV('Beryozka-215', 1976, 'kinescope', false, 24, 2, true, false, false);
-$samsungUE55MU7000U = new TV('Samsung UE55MU7000U', 2017, 'LCD', true, 55, 107000000, true, true, true );
+$beryozka215 = new TV('Beryozka-215', 1976, 'kinescope', false, 24, 2, 8, true, false, false);
+SelectChannel($beryozka215->numberOfChannels);
+$samsungUE55MU7000U = new TV('Samsung UE55MU7000U', 2017, 'LCD', true, 55, 107000000, 1000, true, true, true );
+SelectChannel($samsungUE55MU7000U->numberOfChannels);
 
 class BallPen
 {
@@ -46,6 +60,15 @@ class BallPen
     public $size;
     public $withButton;
     public $inkColor;
+    
+    public function write ($inkColor)
+    {
+        if (is_null($inkColor) === true){
+            echo 'В ручке нет чернил';
+        } else {
+            echo 'Ручка пишет цветом ' . $inkColor;
+        }
+    }
 }
 
 $parkerPen = new BallPen;
@@ -53,11 +76,14 @@ $parkerPen->bodyColor = 'gold';
 $parkerPen->size = 13;
 $parkerPen->withButton = true;
 $parkerPen->inkColor = 'black';
+write($parkerPen->inkColor);
+
 $erichKrausePen = new BallPen;
 $erichKrausePen->bodyColor = 'white';
 $erichKrausePen->size = 15;
 $erichKrausePen->withButton = false;
 $erichKrausePen->inkColor = 'blue';
+write($erichKrausePen->inkColor);
 
 class Duck
 {
@@ -65,18 +91,14 @@ class Duck
     public $name;
     public $size;
     public $color;
-    public $voice = 'kria';
-    public function sayCria($voice)
+    public $voice;
+    public $voiceCount;
+    
+    public function voice($voice, $voiceCount)
     {
-        echo $voice;
-    }
-    public function fly()
-    {
-        echo 'Duck is flying now';
-    }
-    public function swim()
-    {
-        echo 'Duck is swimming now';
+        for ($i = 0; $i < $voiceCount; $i++) {
+            echo $voice . "!!! ";    
+        }
     }
 }
 
@@ -84,10 +106,17 @@ $duck = new Duck;
 $duck->age = 2;
 $duck->size = 'large';
 $duck->color = 'brown';
+$duck->voice = 'KRIA';
+$duck->voiceCount = 3;
+voice($duck->voice, $duck->voiceCount);
+
 $litteDuck = new Duck;
 $litteDuck->age = 0.1;
 $litteDuck->size = 'small';
 $litteDuck->color = 'yellow';
+$duck->voice = 'kria';
+$duck->voiceCount = 1;
+voice($duck->voice, $duck->voiceCount);
 
 class Product
 {
@@ -104,6 +133,7 @@ class Product
 
 $phpStorm = new Product('programs', 'phpStorm', 'thing', 199.00, 0, 0);
 $phpStorm->validity = 1;
+
 $cheesburger = new Product('food', 'Чизбургер Де Люкс', 'thing', 119, 18, 5);
 $cheesburger->producer = 'KFC';
 $cheesburger->expirationDate = '24.04.2018';
